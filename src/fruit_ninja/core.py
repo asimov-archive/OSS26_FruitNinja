@@ -1,56 +1,76 @@
-"""Core functions of ossimg. (examples for documentation)"""
+"""Core functions for the Finger Slash game."""
 
 
-def resize(path, width):
-    """Resize an image to the given width, keeping its aspect ratio.
+def track_fingertip(x: float, y: float, width: int, height: int) -> tuple[int, int]:
+    """Convert normalized fingertip coordinates to screen coordinates.
 
     Args:
-        path (str): Path to the input image file.
-        width (int): Target width in pixels. Must be positive.
+        x (float): Normalized horizontal coordinate (0 to 1).
+        y (float): Normalized vertical coordinate (0 to 1).
+        width (int): Game screen width in pixels.
+        height (int): Game screen height in pixels.
 
     Returns:
-        PIL.Image.Image: The resized image. The height is computed
-        from the original aspect ratio.
+        tuple[int, int]: Fingertip position in screen pixels.
 
     Raises:
-        ValueError: If ``width`` is not a positive integer.
+        ValueError: If coordinates or dimensions are invalid.
+        NotImplementedError: Until the function is implemented.
 
     Examples:
-        >>> resize("examples/clock.png", 200).size
-        (200, 100)
+        >>> track_fingertip(0.5, 0.5, 1280, 720)
+        (640, 360)
     """
     raise NotImplementedError
 
 
-def crop(path, box):
-    """Crop an image to a rectangle.
+def detect_slice(
+    previous: tuple[float, float],
+    current: tuple[float, float],
+    center: tuple[float, float],
+    radius: float,
+    min_speed: float,
+) -> bool:
+    """Determine whether a fingertip movement slices an object.
 
     Args:
-        path (str): Path to the input image file.
-        box (tuple[int, int, int, int]): (left, top, right, bottom) in pixels.
+        previous (tuple[float, float]): Previous fingertip position.
+        current (tuple[float, float]): Current fingertip position.
+        center (tuple[float, float]): Center of the fruit or bomb.
+        radius (float): Object collision radius.
+        min_speed (float): Minimum fingertip movement per frame.
 
     Returns:
-        PIL.Image.Image: The cropped image.
+        bool: True if the movement intersects the object fast enough.
+
+    Raises:
+        ValueError: If radius or minimum speed is invalid.
+        NotImplementedError: Until the function is implemented.
 
     Examples:
-        >>> crop("examples/clock.png", (0, 0, 100, 100)).size
-        (100, 100)
+        >>> detect_slice((0, 50), (100, 50), (50, 50), 20, 10)
+        True
     """
     raise NotImplementedError
 
 
-def grayscale(path, out):
-    """Save a grayscale copy of an image. The original file is not changed.
+def save_high_score(score: int, path: str = "highscore.json") -> bool:
+    """Save a new high score if it exceeds the previous record.
 
     Args:
-        path (str): Path to the input image file.
-        out (str): Path of the new grayscale file. Must differ from ``path``.
+        score (int): Current game score.
+        path (str): Path to the high-score JSON file.
 
     Returns:
-        str: The path of the file that was written.
+        bool: True if a new high score was saved, otherwise False.
+
+    Raises:
+        ValueError: If the score is negative.
+        OSError: If the file cannot be written.
+        NotImplementedError: Until the function is implemented.
 
     Examples:
-        >>> grayscale("examples/clock.png", "clock_gray.png")
-        'clock_gray.png'
+        >>> save_high_score(100)
+        True
     """
     raise NotImplementedError
