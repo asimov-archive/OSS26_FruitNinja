@@ -32,13 +32,13 @@
 
 ## 3. 머지 규칙(Merge Rules)
 
-- 승인을 받은 뒤 머지는 PR 작성자가 직접 한다.
+- 승인을 받은 뒤 머지는 PR 작성자가 아닌 다른 팀원이 한다.
 - 커밋 기록을 깔끔하게 유지하기 위해 **Squash and Merge**를 사용한다.
 - 머지 후에는 기능 브랜치를 삭제한다.
 - `main` 브랜치는 항상 안정적인 상태로 유지한다.
 - `main`에 절대 force-push하지 않는다.
 
-- The PR author is responsible for merging after receiving approval.
+- After approval, a team member other than the PR author merges the PR.
 - Use **Squash and Merge** to maintain a clean commit history.
 - Delete the feature branch after merging.
 - The `main` branch must always remain stable.
