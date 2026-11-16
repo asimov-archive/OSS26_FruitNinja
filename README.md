@@ -105,12 +105,6 @@ TODO
 
 팀의 협업 규칙은 [team-rules.md](docs/team-rules.md)를 참고하세요.
 
-### AI Use
-
-- **AI Tool:** ChatGPT
-- **Purpose:** README 초안 작성 및 문서 구성 지원
-- **Verification:** 프로젝트 제안서와 기존 함수 정의를 참고하여 작성하였으며, 실제 설치 및 배포 검증은 추후 진행할 예정입니다.
-
 ## 9. License
 
 This project is licensed under the MIT License.
