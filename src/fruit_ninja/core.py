@@ -1,5 +1,8 @@
 """Core functions for the Finger Slash game."""
 
+import json
+from datetime import date
+
 import numpy as np
 
 
@@ -95,4 +98,25 @@ def save_high_score(score: int, path: str = "highscore.json") -> bool:
         >>> save_high_score(100)
         True
     """
-    raise NotImplementedError
+    if score < 0:
+        raise ValueError("score must not be negative")
+
+    best = _load_best_score(path)
+    if best is not None and score <= best:
+        return False
+
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump({"score": score, "date": date.today().isoformat()}, f)
+    return True
+
+
+def _load_best_score(path: str) -> "int | None":
+    # 파일이 없거나 깨졌으면 기록 없음(None)으로 보고 새 점수로 덮어쓰게 함
+    try:
+        with open(path, encoding="utf-8") as f:
+            data = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError, UnicodeDecodeError):
+        return None
+    if isinstance(data, dict) and type(data.get("score")) is int:
+        return data["score"]
+    return None
