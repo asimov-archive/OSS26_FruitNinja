@@ -95,7 +95,7 @@ TODO
 
 | Name | GitHub ID |
 |---|---|
-| 양희 | asimov |
+| 양희 | Cat0412 |
 | 김민찬 | QuivyGM |
 | 하나근 | nageun-ha |
 | 유재준 | yj2trigger |
