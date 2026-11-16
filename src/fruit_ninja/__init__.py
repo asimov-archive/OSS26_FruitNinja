@@ -1,4 +1,4 @@
-"""Finger Slash Python package."""
+"""Finger Slash: webcam fingertip fruit-slicing game helpers."""
 
 from .core import detect_slice, track_fingertip
 
