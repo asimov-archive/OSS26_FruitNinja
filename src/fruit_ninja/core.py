@@ -1,5 +1,7 @@
 """Core functions for the Finger Slash game."""
 
+import numpy as np
+
 
 def track_fingertip(x: float, y: float, width: int, height: int) -> tuple[int, int]:
     """Convert normalized fingertip coordinates to screen coordinates.
@@ -51,7 +53,27 @@ def detect_slice(
         >>> detect_slice((0, 50), (100, 50), (50, 50), 20, 10)
         True
     """
-    raise NotImplementedError
+    if not np.isfinite(radius) or radius <= 0:
+        raise ValueError("radius must be a positive finite number")
+    if not np.isfinite(min_speed) or min_speed < 0:
+        raise ValueError("min_speed must be a non-negative finite number")
+
+    start = np.asarray(previous, dtype=float)
+    end = np.asarray(current, dtype=float)
+    point = np.asarray(center, dtype=float)
+
+    segment = end - start
+    length_sq = float(np.dot(segment, segment))
+    if np.sqrt(length_sq) < min_speed:
+        return False
+
+    # 손이 멈춘 경우(길이 0)는 0으로 나누지 않고 시작점과의 거리로 판정
+    if length_sq == 0.0:
+        t = 0.0
+    else:
+        t = float(np.clip(np.dot(point - start, segment) / length_sq, 0.0, 1.0))
+    closest = start + t * segment
+    return bool(np.linalg.norm(point - closest) < radius)
 
 
 def save_high_score(score: int, path: str = "highscore.json") -> bool:
