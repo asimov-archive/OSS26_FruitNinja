@@ -23,7 +23,15 @@ def track_fingertip(x: float, y: float, width: int, height: int) -> tuple[int, i
         >>> track_fingertip(0.5, 0.5, 1280, 720)
         (640, 360)
     """
-    raise NotImplementedError
+    if not (0.0 <= x <= 1.0 and 0.0 <= y <= 1.0):
+        raise ValueError("x and y must be between 0 and 1")
+    if width <= 0 or height <= 0:
+        raise ValueError("width and height must be positive")
+
+    # 버림 후 마지막 픽셀(width - 1)로 제한해 x=1.0이 화면 밖으로 나가지 않게 함
+    px = min(int(x * width), width - 1)
+    py = min(int(y * height), height - 1)
+    return (px, py)
 
 
 def detect_slice(
