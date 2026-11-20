@@ -3,15 +3,30 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "fruit-ninja"
+name = "finger-slash-oss26"
 version = "0.1.0"
 description = "A webcam-controlled fruit slicing game using real-time hand tracking"
 readme = "README.md"
 license = "MIT"
+authors = [
+    { name = "양희" },
+    { name = "김민찬" },
+    { name = "하나근" },
+    { name = "유재준" },
+    { name = "이지민" },
+]
 requires-python = ">=3.10"
 dependencies = [
     "numpy>=1.24",
 ]
 
+[project.urls]
+Repository = "https://github.com/asimov-archive/OSS26_FruitNinja"
+Documentation = "https://asimov-archive.github.io/OSS26_FruitNinja/"
+
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
