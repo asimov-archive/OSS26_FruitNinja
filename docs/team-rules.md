@@ -60,9 +60,11 @@
 
 ## 5. 커밋 메시지 규칙(Commit Message Rules)
 
-커밋 메시지는 `type: 짧은 설명` 형식으로 쓴다. `type` 접두어는 영어로 쓰고, 설명은 **한국어**로 짧고 명확하게 쓴다.
+### 첫 줄(Subject)
 
-(Use the format `type: short description`. Keep the `type` prefix in English, and write the description in **Korean**, short and clear.)
+커밋 메시지 첫 줄은 `type: 짧은 설명` 형식으로 쓴다. `type` 접두어는 영어로 쓰고, 설명은 **한국어**로 짧고 명확하게 쓴다.
+
+(The first line uses the format `type: short description`. Keep the `type` prefix in English, and write the description in **Korean**, short and clear.)
 
 예시(Examples):
 - `feat: 로그인 기능 추가`
@@ -70,6 +72,44 @@
 - `docs: README 업데이트`
 - `test: 로그인 테스트 추가`
 - `refactor: 인증 코드 단순화`
+- `chore: 패키지 설정 변경`
+
+### 본문(Body)
+
+- `feat`, `fix`, `refactor` 커밋은 **본문을 반드시 쓴다.** `docs`, `test`, `chore`는 변경이 작으면 첫 줄만 써도 된다.
+- 첫 줄 다음에 빈 줄을 하나 두고 본문을 쓴다.
+- 본문에는 다음을 적는다.
+  - **변경 파일**: 생성·수정·삭제한 파일 경로와, 무엇을 어떻게 바꿨는지
+  - **함수 요약** (함수를 추가하거나 동작을 바꾼 경우): 입력, 출력, 예외
+- 본문은 한국어로 쓰고, 한 줄은 72자 이내를 권장한다.
+
+- `feat`, `fix`, and `refactor` commits **must include a body.** For small `docs`, `test`, and `chore` changes, the first line alone is enough.
+- Leave one blank line after the first line, then write the body.
+- The body must include:
+  - **Changed files**: paths of files created, updated, or deleted, and what was changed and how
+  - **Function summary** (when a function is added or its behavior changes): inputs, outputs, and exceptions
+- Write the body in Korean, keeping lines under about 72 characters.
+
+예시(Example):
+
+    feat: 손끝 좌표를 화면 픽셀 좌표로 변환하는 track_fingertip 구현
+
+    변경 파일
+    - src/fruit_ninja/core.py (수정): track_fingertip 구현, 입력 검증 추가
+    - src/fruit_ninja/__init__.py (수정): track_fingertip 공개 API에 추가
+
+    함수 요약: track_fingertip(x, y, width, height)
+    - 입력: 정규화 좌표 x, y (0~1), 화면 크기 width, height (픽셀)
+    - 출력: (px, py) 픽셀 좌표 튜플, 화면 밖으로 나가지 않게 제한
+    - 예외: 좌표가 0~1 밖이거나 크기가 0 이하이면 ValueError
+
+### 스쿼시 머지 메시지(Squash merge message)
+
+- Squash and Merge 시 `main`에 남는 커밋 메시지는 **PR 제목**과 머지 담당자가 입력한 본문이다.
+- 따라서 PR 제목도 `type: 설명` 형식을 따르고, 머지 담당자는 위 본문 규칙에 맞게 본문을 정리해 머지한다.
+
+- With Squash and Merge, the commit on `main` uses the **PR title** and the body entered by the person merging.
+- PR titles must therefore follow the `type: description` format, and the merger should edit the body to follow the rules above.
 
 ## 6. 팀 소통 규칙(Team Communication Rules)
 
