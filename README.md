@@ -72,7 +72,17 @@ TODO: `pyproject.toml`과 실제 코드에 맞춰 의존성 및 라이선스를 
 
 ## 5. Tests
 
-TODO
+테스트 실행에 필요한 패키지를 설치합니다.
+
+```bash
+pip install -e . pytest
+```
+
+테스트를 실행합니다.
+
+```bash
+pytest
+```
 
 ## 6. Documentation
 
