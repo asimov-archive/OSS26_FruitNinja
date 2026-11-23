@@ -58,7 +58,6 @@ def detect_slice(
 
     Raises:
         ValueError: If radius or minimum speed is invalid.
-        NotImplementedError: Until the function is implemented.
 
     Examples:
         >>> detect_slice((0, 50), (100, 50), (50, 50), 20, 10)
