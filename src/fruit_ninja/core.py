@@ -98,7 +98,6 @@ def save_high_score(score: int, path: str = "highscore.json") -> bool:
     Raises:
         ValueError: If the score is negative.
         OSError: If the file cannot be written.
-        NotImplementedError: Until the function is implemented.
 
     Examples:
         >>> save_high_score(100)
