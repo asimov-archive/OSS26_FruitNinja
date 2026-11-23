@@ -20,7 +20,6 @@ def track_fingertip(x: float, y: float, width: int, height: int) -> tuple[int, i
 
     Raises:
         ValueError: If coordinates or dimensions are invalid.
-        NotImplementedError: Until the function is implemented.
 
     Examples:
         >>> track_fingertip(0.5, 0.5, 1280, 720)
